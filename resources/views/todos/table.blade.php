@@ -2,13 +2,21 @@
     <table class="table" id="todos-table">
         <thead>
             <tr>
-                <th>Title</th>
-        <th>Status</th>
+                <th style="cursor: pointer">
+                    Title
+                    <i class="fas fa-arrow-up"></i>
+                    <i class="fas fa-arrow-down"></i>
+                </th>
+                <th style="cursor: pointer">
+                    Status
+                    <i class="fas fa-arrow-up"></i>
+                    <i class="fas fa-arrow-down"></i>
+                </th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
-        @foreach($todos as $todo)
+            @foreach($todos as $todo)
             <tr>
                 <td>{{ $todo->title }}</td>
                 <td>{{ $todo->status_name }}</td>
@@ -26,7 +34,7 @@
                     {!! Form::close() !!}
                 </td>
             </tr>
-        @endforeach
+            @endforeach
         </tbody>
     </table>
 </div>
