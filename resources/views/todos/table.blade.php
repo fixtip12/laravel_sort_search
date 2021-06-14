@@ -3,14 +3,22 @@
         <thead>
             <tr>
                 <th style="cursor: pointer">
-                    Title
-                    <i class="fas fa-arrow-up"></i>
-                    <i class="fas fa-arrow-down"></i>
+                    <a href="{{route('todos.index',['sort' => 'titleAsc'])}}" style="text-decoration:none;color:inherit;">Title</a>
+                    @if($sort === 'titleAsc')
+                      <a href="{{route('todos.index',['sort' => 'titleDesc'])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-up"></i></a>
+                    @endif
+                    @if($sort === 'titleDesc')
+                      <a href="{{route('todos.index',['sort' => 'titleAsc'])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-down"></i></a>
+                    @endif
                 </th>
                 <th style="cursor: pointer">
-                    Status
-                    <i class="fas fa-arrow-up"></i>
-                    <i class="fas fa-arrow-down"></i>
+                    <a href="{{route('todos.index',['sort' => 'statusAsc'])}}" style="text-decoration:none;color:inherit;">Status</a>
+                    @if($sort === 'statusAsc')
+                      <a href="{{route('todos.index',['sort' => 'statusDesc'])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-up"></i></a>
+                    @endif
+                    @if($sort === 'statusDesc')
+                     <a href="{{route('todos.index',['sort' => 'statusAsc'])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-down"></i></a>
+                    @endif
                 </th>
                 <th colspan="3">Action</th>
             </tr>
