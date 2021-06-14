@@ -1,41 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Todos</h1>
-                </div>
-                <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('todos.create') }}">
-                        Add New
-                    </a>
-                </div>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Todos</h1>
+            </div>
+            <div class="col-sm-6">
+                <a class="btn btn-primary float-right" href="{{ route('todos.create') }}">
+                    Add New
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <div class="content px-3">
+<div class="content px-3">
 
-        @include('flash::message')
+    @include('flash::message')
 
-        <div class="clearfix"></div>
+    <div class="clearfix"></div>
 
-        <div class="card">
-            <div class="card-body p-0">
-                @include('todos.table')
+    {!! Form::open(['method'=>'get', 'route' => ['todos.index']]) !!}
 
-                <div class="card-footer clearfix float-right">
-                    <div class="float-right">
-                        
-                    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    {!! Form::label('status', 'Status') !!}
+                    {!! Form::select('status', [null => 'すべて', '0' => '未対応', '1' => '処理中', '2' => '処理済み', '3' => '完了'], '', ['class' => 'form-control custom-select']) !!}
+                </div>
+                <div class="form-group col-sm-2 mt-4 pt-2">
+                    {!! Form::hidden('sort', $sort, ['class' => 'form-control']) !!}
+                    {!! Form::submit('Search', ['class' => 'btn btn-primary btn-block']) !!}
                 </div>
             </div>
-
         </div>
     </div>
 
-@endsection
+    {!! Form::close() !!}
 
+    <div class="card">
+        <div class="card-body p-0">
+            @include('todos.table')
+
+            <div class="card-footer clearfix float-right">
+                <div class="float-right">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@endsection
