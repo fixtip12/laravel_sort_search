@@ -41,22 +41,36 @@ class TodoRepository extends BaseRepository
         return Todo::class;
     }
 
-    public function sort(?string $sort)
+    public function search(?string $sort,?string $status)
     {
-        $todos = Todo::where('user_id',Auth::id())
-                ->when($sort === 'titleAsc',function($query){
-                    $query->orderBy('title');
-                })
-                ->when($sort === 'titleDesc', function ($query) {
-                    $query->orderByDesc('title');
-                })
-                ->when($sort === 'statusAsc', function ($query) {
-                    $query->orderBy('status');
-                })
-                ->when($sort === 'statusDesc', function ($query) {
-                    $query->orderByDesc('status');
-                })
-                ->get();
+        $todos = Todo::where('user_id',Auth::id());
+
+        if(!empty($sort)){
+            $this->sort($todos,$sort);
+        }
+
+        // 空文字の'0'がパラメータで渡ってくるため、issetで判定
+        if (isset($status)) {
+            $todos->where('status',$status);
+        }
+
+        return $todos->get();
+    }
+
+    private function sort($todos,$sort)
+    {
+        $todos->when($sort === 'titleAsc',function($query){
+            $query->orderBy('title');
+        })
+        ->when($sort === 'titleDesc', function ($query) {
+            $query->orderByDesc('title');
+        })
+        ->when($sort === 'statusAsc', function ($query) {
+            $query->orderBy('status');
+        })
+        ->when($sort === 'statusDesc', function ($query) {
+            $query->orderByDesc('status');
+        });
 
         return $todos;
     }
