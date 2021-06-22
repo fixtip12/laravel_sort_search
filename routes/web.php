@@ -25,3 +25,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('todos', App\Http\Controllers\TodoController::class);
 
 Route::get('/', [App\Http\Controllers\ContactController::class, 'index'])->name('index');
+Route::post('csv/export', [App\Http\Controllers\ContactController::class, 'csvExport'])->name('contact.csv.export');
