@@ -3,21 +3,21 @@
         <thead>
             <tr>
                 <th style="cursor: pointer">
-                    <a href="{{route('todos.index',['sort' => 'titleAsc'])}}" style="text-decoration:none;color:inherit;">Title</a>
+                    <a href="{{route('todos.index',['sort' => 'titleAsc','queryText' => $queryText,'status' => $status])}}" style="text-decoration:none;color:inherit;">Title</a>
                     @if($sort === 'titleAsc')
-                      <a href="{{route('todos.index',['sort' => 'titleDesc'])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-up"></i></a>
+                    <a href="{{route('todos.index',['sort' => 'titleDesc','queryText' => $queryText,'status' => $status])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-up"></i></a>
                     @endif
                     @if($sort === 'titleDesc')
-                      <a href="{{route('todos.index',['sort' => 'titleAsc'])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-down"></i></a>
+                    <a href="{{route('todos.index',['sort' => 'titleAsc','queryText' => $queryText,'status' => $status])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-down"></i></a>
                     @endif
                 </th>
                 <th style="cursor: pointer">
-                    <a href="{{route('todos.index',['sort' => 'statusAsc'])}}" style="text-decoration:none;color:inherit;">Status</a>
+                    <a href="{{route('todos.index',['sort' => 'statusAsc','queryText' => $queryText,'status' => $status])}}" style="text-decoration:none;color:inherit;">Status</a>
                     @if($sort === 'statusAsc')
-                      <a href="{{route('todos.index',['sort' => 'statusDesc'])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-up"></i></a>
+                    <a href="{{route('todos.index',['sort' => 'statusDesc','queryText' => $queryText,'status' => $status])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-up"></i></a>
                     @endif
                     @if($sort === 'statusDesc')
-                     <a href="{{route('todos.index',['sort' => 'statusAsc'])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-down"></i></a>
+                    <a href="{{route('todos.index',['sort' => 'statusAsc','queryText' => $queryText,'status' => $status])}}" style="text-decoration:none;color:inherit;"><i class="fas fa-arrow-down"></i></a>
                     @endif
                 </th>
                 <th colspan="3">Action</th>
