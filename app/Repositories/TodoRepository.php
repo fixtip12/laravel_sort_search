@@ -41,7 +41,7 @@ class TodoRepository extends BaseRepository
         return Todo::class;
     }
 
-    public function search(?string $sort,?string $status)
+    public function search(?string $sort,?string $status,?string $queryText)
     {
         $todos = Todo::where('user_id',Auth::id());
 
@@ -52,6 +52,10 @@ class TodoRepository extends BaseRepository
         // 空文字の'0'がパラメータで渡ってくるため、issetで判定
         if (isset($status)) {
             $todos->where('status',$status);
+        }
+
+        if(!empty($queryText)){
+            $todos->where('title','like',"%$queryText%");
         }
 
         return $todos->get();
